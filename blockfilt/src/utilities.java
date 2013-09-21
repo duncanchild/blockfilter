@@ -33,9 +33,10 @@ File Contains:
 */
 
 
-import java.io.*;
-import javax.swing.*;
-import java.awt.*;
+import java.io.PrintWriter;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class utilities
 
