@@ -11,7 +11,7 @@ public class ComputeResource extends ServerResource {
 	public String getTest() {
 		
 		Gson gson = new Gson();
-		return gson.toJson(new float[] {0, 1, 2, 3});
+		return gson.toJson(new Results());
 	}
 
 }
