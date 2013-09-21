@@ -1,1 +1,61 @@
-hello wolrd
+<html>
+<head>
+  <title>Test JavaScript Form Validation</title>
+</head>
+ 
+<body>
+  <h2>Block Filter Input Panel</h2>
+ 
+  <form id="theForm" method="get" action="run">
+    <table>
+    <tr>
+      <td>F1</td>
+      <td><input type="text"  name="filter1"/></td>
+    <tr>
+     <tr>
+      <td>F2</td>
+      <td><input type="text"  name="filter2"/></td>
+      <tr>
+    <tr>
+      <td>F3</td>
+      <td><input type="text"  name="filter3"/></td>
+    <tr>
+    <tr>
+      <td>F4</td>
+      <td><input type="text"  name="filter4"/></td>
+    <tr>
+    .  
+         <td>Sample Interval</td>
+      <td><input type="text"  name="dsamp" /></td>
+     <tr>
+    
+         <td>Top of Analysis Window (ms)</td>
+      <td><input type="text"  name="dft_window_top" /></td>
+     <tr>
+          <td>Bottom of Analysis Window (ms)</td>
+      <td><input type="text"  name="dft_window_bot" /></td>
+     <tr>
+       
+             <td>Analysis Window Cosine Taper (%)</td>
+      <td><input type="text"  name="taper_percent" /></td>
+     <tr>
+    <td>Model</td> 
+  
+<td><textarea name="model"></textarea></td></tr>
+
+
+      <td><input type="submit" value="SEND" id="submit"/>&nbsp;
+          <input type="reset" value="CLEAR" id="reset"/></td>
+      <td>&nbsp;</td></tr>
+    </table>
+  </form>
+</body>
+</html>
+
+
+ <script language="javascript">
+var filter, message;
+message = "x is equal to ";
+document.write (message); // prints the value of the message variable
+document.write filter(0); //prints the value of x
+</script> 
