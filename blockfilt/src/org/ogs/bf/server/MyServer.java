@@ -10,7 +10,7 @@ public class MyServer extends Application {
 		System.out.println("starting server .... ");
 		Component component = new Component();
 		component.getServers().add(Protocol.HTTP, 80);
-		component.getDefaultHost().attach("/run", TestResource.class);
+		component.getDefaultHost().attach("/run", ComputeResource.class);
 		component.start();
 	}
 }
