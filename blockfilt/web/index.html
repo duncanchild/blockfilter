@@ -1,9 +1,41 @@
 <html>
+
 <head>
   <title>Test JavaScript Form Validation</title>
+  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).hide();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.get("run?filter1=1&filter2=2&filter3=3&filter4=4&dsamp=5&dft_window_top=6&dft_window_bot=7&taper_percent=8&model=1%2C2%2C3%2C4",function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+</script>
+
+
 </head>
  
 <body>
+
+<button>Send an HTTP POST request to a page and get the result back</button>
+
+<p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p>
+
+
   <h2>Block Filter Input Panel</h2>
  
   <form id="theForm" method="get" action="run">
