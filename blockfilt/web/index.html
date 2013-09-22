@@ -23,6 +23,7 @@ $(document).ready(function(){
       
       var topleft1 = toTuple(data.trace_times, data.filtered_blocks);
       var topleft2 = toTuple(data.intimes, data.impedances);
+      
        $.plot($("#top_left"),[
    {
      label: "Filtered Blocks",
@@ -115,6 +116,7 @@ $(document).ready(function(){
 
 <button>Run</button>
 
+<h2>title</h2>
 <div id="top_left" style="width:800px;height:100px;"></div>
 <div id="bottom_left" style="width:800px;height:100px;"></div>
 <div id="top_right" style="width:700px;height:100px;"></div>
