@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 <script>
 /* Attach a submit handler to the form */
-$("#foo").submit(function(event) {
+$("#inputdata").submit(function(event) {
 
     /* Stop form from submitting normally */
     event.preventDefault();
@@ -39,7 +39,7 @@ $("#foo").submit(function(event) {
 
     /* Send the data using post and put the results in a div */
     $.ajax({
-        url: "test.php",
+        url: "localhost:8080",
         type: "post",
         data: values,
         success: function(){
