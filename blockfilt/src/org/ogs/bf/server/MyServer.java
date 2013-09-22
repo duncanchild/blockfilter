@@ -16,7 +16,7 @@ public class MyServer {
 	public static void main(String[] args) throws Exception {
 		System.out.println("starting server .... ");
 		Component component = new Component();
-		component.getServers().add(Protocol.HTTP, 80);
+		component.getServers().add(Protocol.HTTP, 8080);
 		component.getDefaultHost().attach("/run", ComputeResource.class);
 		component.getClients().add(Protocol.FILE);
 
