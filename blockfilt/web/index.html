@@ -18,7 +18,16 @@ var toTuple = function(x, y) {
 
 $(document).ready(function(){
   $("button").click(function(){
-    $.get("run?filter1=5&filter2=6&filter3=50&filter4=100&dsamp=1&dft_window_top=170&dft_window_bot=240&taper_percent=10&model=200,1,204,2,216,1,220,3",function(data,status){
+  
+  var fc1 = $("#fc1").val();
+  var fc2 = $("#fc2").val();
+  var fc3 = $("#fc3").val();
+  var fc4 = $("#fc4").val();
+  
+  var url = "run?filter1=" + fc1 + "&filter2=" + fc2 + "&filter3=" + fc3 + "&filter4=" + fc4;
+  url = url + "&dsamp=1&dft_window_top=170&dft_window_bot=240&taper_percent=10&model=200,1,204,2,216,1,220,3";
+  
+    $.get(url,function(data,status){
       //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       
       var topleft1 = toTuple(data.trace_times, data.filtered_blocks);
