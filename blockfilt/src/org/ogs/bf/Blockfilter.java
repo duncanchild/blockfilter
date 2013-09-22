@@ -80,12 +80,16 @@ public class Blockfilter
   public double [] rcs;
   public double dft_window_top;
   public double dft_window_bot;
+  public double[] impedances;
+  public double[] intimes;
 
   public Blockfilter ( double [] filter, double [] impedances, double [] intimes, double UnitSc,
                        double dsamp, double taper_percent, double dft_window_top, double dft_window_bot)
 
   {
 
+	this.impedances = impedances;
+	this.intimes = intimes.clone();
 	this.dft_window_bot = dft_window_bot;
 	this.dft_window_top = dft_window_top;
     nspikes = impedances.length;
