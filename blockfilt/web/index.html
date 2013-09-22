@@ -24,9 +24,9 @@ $(document).ready(function(){
   var fc3 = $("#fc3").val();
   var fc4 = $("#fc4").val();
   var dsamp = $("#dsamp").val();
-  var dft_window_top = $("#dft_window_top");
-  var dft_window_bot = $("#dft_window_bot");
-  var taper_percent = $("#taper_percent");
+  var dft_window_top = $("#dft_window_top").val();
+  var dft_window_bot = $("#dft_window_bot").val();
+  var taper_percent = $("#taper_percent").val();
   
   var url = "run?filter1=" + fc1 + "&filter2=" + fc2 + "&filter3=" + fc3 + "&filter4=" + fc4;
   url = url + "dsamp=" + dsamp + "&dft_window_top=" + dft_window_top + "&dft_window_bot=" + dft_window_bot + "&taper_percent=" + taper_percent;
