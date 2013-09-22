@@ -5,32 +5,24 @@
 <script src="flot/flot/jquery.flot.js"></script>
 <script>
 
+var toTuple = function(x, y) {
+
+   var result = new Array();
+   for (var i = 0; i < x.length; i++) {
+        result[i] = [x[i], y[i]]
+   }
+   
+   return result;
+}
+
+
 $(document).ready(function(){
   $("button").click(function(){
     $.get("run?filter1=5&filter2=6&filter3=50&filter4=100&dsamp=1&dft_window_top=170&dft_window_bot=240&taper_percent=10&model=200,1,204,2,216,1,220,3",function(data,status){
-      alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-    
-      //console.log(" nsamp " + data.nsamp);
-      //console.log(" firsdt time " + data.trace_times[0]);
-      //alert("nsamp " + results.nsamp);
+      //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       
-      trace_times = data.trace_times;
-      filtered_blocks = data.filtered_blocks;
-      
-      var topleft1 = new Array();
-      for (var i = 0; i < trace_times.length; i++) {
-        topleft1[i] = [trace_times[i], filtered_blocks[i]]
-      }
-      
-      intimes = data.intimes;
-      impedances = data.impedances;
-      
-      var topleft1b = new Array();
-      for (var i = 0; i < impedances.length; i++) {
-        topleft1b[i] = [intimes[i], impedances[i]]
-      }
-      
-      
+      var topleft1 = toTuple(data.trace_times, data.filtered_blocks);
+      var topleft2 = toTuple(data.intimes, data.impedances);
        $.plot($("#top_left"),[
    {
      label: "Filtered Blocks",
@@ -40,52 +32,68 @@ $(document).ready(function(){
    },
    {
      label: "Impedances",
-     data: topleft1b,
+     data: topleft2,
      lines: {show: true},
      points: {show: true}   
    }
    ]);
    
+   var topright1a = toTuple(data.freqs, data.spectrum_blocks);
+   var topright1b = toTuple(data.freqs, data.windowed_blk_spectrum);
+   
+   
     $.plot($("#top_right"),[
    {
      label: "Amplitude Spectra",
-     data: topleft1,
+     data: topright1a,
      lines: {show: true},
      points: {show: true}
    },
    {
      label: "Sampled Window DFT Spectrum",
-     data: topleft1b,
+     data: topright1b,
      lines: {show: true},
      points: {show: false}   
    }
    ]);
  
+  
+ 
+   
+    var bottomleft1 = toTuple(data.intimes, data.rcs);
+    var bottomleft2 = toTuple(data.trace_times, data.filtered_rc);
+ 
     $.plot($("#bottom_left"),[
-   {
-     label: "Reflectivity",
-     data: topleft1,
-     lines: {show: true},
-     points: {show: true}
-   },
+   
    {
      label: "Filtered Reflectivity",
-     data: topleft1b,
+     data: bottomleft2,
      lines: {show: true},
      points: {show: true}   
+   },
+   {
+     label: "Reflectivity",
+     data: bottomleft1,
+     lines: {show: true},
+     points: {show: true}
    }
    ]);
+   
+   
+   
+   var bottomright1 = toTuple(data.freqs, data.spectrum_rc);
+   var bottomright2 = toTuple(data.freqs, data.windowed_rc_spectrum);
    
     $.plot($("#bottom_right"),[
    {
      label: "Analytical Spectrum",
-     data: topleft1,
+     data: bottomright1,
      lines: {show: true},
      points: {show: true}
    },
    {
      label: "Sampled Window DFT Spectrum",
-     data: topleft1b,
+     data: bottomright2,
      lines: {show: true},
      points: {show: true}   
    }
@@ -107,10 +115,10 @@ $(document).ready(function(){
 
 <button>Run</button>
 
-<div id="top_left" style="width:600px;height:100px;"></div>
-<div id="bottom_left" style="width:600px;height:100px;"></div>
-<div id="top_right" style="width:600px;height:100px;"></div>
-<div id="bottom_right" style="width:600px;height:100px;"></div>
+<div id="top_left" style="width:800px;height:100px;"></div>
+<div id="bottom_left" style="width:800px;height:100px;"></div>
+<div id="top_right" style="width:700px;height:100px;"></div>
+<div id="bottom_right" style="width:700px;height:100px;"></div>
 
 </body>
 </html>
