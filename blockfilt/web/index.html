@@ -23,9 +23,14 @@ $(document).ready(function(){
   var fc2 = $("#fc2").val();
   var fc3 = $("#fc3").val();
   var fc4 = $("#fc4").val();
+  var dsamp = $("#dsamp").val();
+  var dft_window_top = $("#dft_window_top");
+  var dft_window_bot = $("#dft_window_bot");
+  var taper_percent = $("#taper_percent");
   
   var url = "run?filter1=" + fc1 + "&filter2=" + fc2 + "&filter3=" + fc3 + "&filter4=" + fc4;
-  url = url + "&dsamp=1&dft_window_top=170&dft_window_bot=240&taper_percent=10&model=200,1,204,2,216,1,220,3";
+  url = url + "dsamp=" + dsamp + "&dft_window_top=" + dft_window_top + "&dft_window_bot=" + dft_window_bot + "&taper_percent=" + taper_percent;
+  url = url + "&model=200,1,204,2,216,1,220,3";
   
     $.get(url,function(data,status){
       //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
@@ -127,10 +132,10 @@ Filter Corner 1<input id="fc1" type="text" name="email", value="5"/><br>
 Filter Corner 2<input id="fc2" type="text" name="email", value="6"/><br>
 Filter Corner 3<input id="fc3" type="text" name="email", value="50"/><br>
 Filter Corner 4<input id="fc4" type="text" name="email", value="100"/><br>
-Output Sample Interval (ms)<input id="fc4" type="text" name="email", value="1"/><br>
-DFT Window Start (ms)<input id="fc4" type="text" name="email", value="190"/><br>
-DFT Window End (ms)<input id="fc4" type="text" name="email", value="250"/><br>
-Cosine Taper (%)<input id="fc4" type="text" name="email", value="10"/><br>
+Output Sample Interval (ms)<input id="dsamp" type="text" name="email", value="1"/><br>
+DFT Window Start (ms)<input id="dft_window_top" type="text" name="email", value="190"/><br>
+DFT Window End (ms)<input id="dft_window_bot" type="text" name="email", value="250"/><br>
+Cosine Taper (%)<input id="taper_percent" type="text" name="email", value="10"/><br>
 <br>
 <button>Run</button>
 
