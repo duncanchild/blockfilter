@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Building Bar Data</title>
+<script language="JavaScript">  
+var time=new Array(300);
+var imped=new Array(300);
+var time1=200;
+var time2=204;
+var time3=216;
+var time4=220;
+var imped1=1;
+var imped2=2;
+var imped3=1;  
+var imped4=3;  
+var i= 190;
+
+function buildit()
+{
+while (i<300){
+  if (i<=time1)
+  	{
+  	time[i] = i;
+  	imped[i] = imped1;
+  	console.log (time[i]+" "+ imped[i]);
+  	}
+  
+  else if (i<=time2)
+   	{
+  	time[i] = i;
+  	imped[i] = imped2;
+  	console.log (time[i]+" "+ imped[i]);
+  	}
+
+  else if (i<=time3)
+   	{
+  	time[i] = i;
+  	imped[i] = imped3;
+  	console.log (time[i]+" "+ imped[i]);
+ 	} 
+
+  else if (i<=time4)
+   	{
+  	time[i] = i;
+  	imped[i] = imped4;
+   	console.log (time[i]+" "+ imped[i]);
+	}  	
+
+  else if (i>time4)
+   	{
+  	time[i] = i;
+  	imped[i] = 1;
+   	console.log (time[i]+" "+ imped[i]);
+	}  	
+	
+	
+	
+	
+	
+	
+	
+	  	  i++;
+  }
+}
+</script>
+
+<body onload="buildit()">
+
+
+
+
