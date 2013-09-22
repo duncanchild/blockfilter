@@ -16,13 +16,13 @@ import com.google.gson.GsonBuilder;
 public class ComputeResource extends ServerResource {
 	
 	// double[] filter = new double[] {0., 0., 60., 80.};
-	double[] impedances = new double[] {1,2,1,3};
-    double[] intimes = new double[] {200, 204, 216, 220};
+	//double[] impedances = new double[] {1,2,1,3};
+    //double[] intimes = new double[] {200, 204, 216, 220}; // ms
     double UnitSc = 0.001;
-    double dsamp = 1;
-    double taper_percent = 10;
-    double dft_window_top = 170;
-    double dft_window_bot = 220;
+    //double dsamp = 1;
+    //double taper_percent = 10;
+    //double dft_window_top = 170;
+    //double dft_window_bot = 220;
 	
 	
 	@Get ("json")
@@ -33,8 +33,14 @@ public class ComputeResource extends ServerResource {
 		for (String key : vals.keySet()) {
 			System.out.println(key + " " + vals.get(key));
 		}
-			
-		Blockfilter bf = new Blockfilter(getFilter(vals), parseModel(vals), intimes, UnitSc, dsamp, taper_percent, dft_window_top, dft_window_bot);
+		
+		double[][] model = parseModel(vals);
+		double dsamp = Double.parseDouble(vals.get("dsamp"));
+		double taper_percent = Double.parseDouble(vals.get("taper_percent"));
+		double dft_window_top = Double.parseDouble(vals.get("dft_window_top"));
+	    double dft_window_bot = Double.parseDouble(vals.get("dft_window_bot"));
+	    
+		Blockfilter bf = new Blockfilter(getFilter(vals), model[0], model[1], UnitSc, dsamp, taper_percent, dft_window_top, dft_window_bot);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return gson.toJson(bf);
 	}
@@ -47,21 +53,24 @@ public class ComputeResource extends ServerResource {
 		return filter;
 	}
 	
-	public double[] parseModel(Map<String, String> params) {
+	public double[][] parseModel(Map<String, String> params) {
 		String rawPts = params.get("model");
 		System.out.println("---" + rawPts);
 		String pts2 = URLDecoder.decode(rawPts);
 		
 		System.out.println(pts2);
 	
-		String[] pts = pts2.split(" ,");
+		String[] pts = pts2.split(",");
 		System.out.println(Arrays.toString(pts));
-		double[] res = new double[pts.length];
-		for (int i = 0; i < pts.length; i++) {
-			res[i] = Double.parseDouble(pts[i]);
+		double[] times = new double[pts.length/2];
+		double[] impedances = new double[pts.length/2];
+		for (int i = 0; i < pts.length/2; i++) {
+			times[i] = Double.parseDouble(pts[2 * i]);
+			impedances[i] = Double.parseDouble(pts[2 * i + 1]);
+			
 		}
 		
-		return res;
+		return new double[][] {impedances, times};
 	
 	}
 	
