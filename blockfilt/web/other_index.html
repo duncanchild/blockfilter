@@ -1,0 +1,123 @@
+<html>
+
+<head>
+  <title>Test JavaScript Form Validation</title>
+  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).hide();
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.get("run?filter1=1&filter2=2&filter3=3&filter4=4&dsamp=5&dft_window_top=6&dft_window_bot=7&taper_percent=8&model=1%2C2%2C3%2C4",function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+</script>
+
+<script>
+/* Attach a submit handler to the form */
+$("#foo").submit(function(event) {
+
+    /* Stop form from submitting normally */
+    event.preventDefault();
+
+    /* Clear result div*/
+    $("#result").html('');
+
+    /* Get some values from elements on the page: */
+    var values = $(this).serialize();
+
+    /* Send the data using post and put the results in a div */
+    $.ajax({
+        url: "test.php",
+        type: "post",
+        data: values,
+        success: function(){
+            alert("success");
+            $("#result").html('Submitted successfully');
+        },
+        error:function(){
+            alert("failure");
+            $("#result").html('There is error while submit');
+        }
+    });
+});
+
+</script>
+
+</head>
+ 
+<body>
+
+<button>Send an HTTP POST request to a page and get the result back</button>
+
+<p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p>
+
+
+  <h2>Block Filter Input Panel</h2>
+ 
+  <form id="theForm" method="get" action="run">
+    <table>
+    <tr>
+      <td>F1</td>
+      <td><input type="text"  name="filter1"/></td>
+    <tr>
+     <tr>
+      <td>F2</td>
+      <td><input type="text"  name="filter2"/></td>
+      <tr>
+    <tr>
+      <td>F3</td>
+      <td><input type="text"  name="filter3"/></td>
+    <tr>
+    <tr>
+      <td>F4</td>
+      <td><input type="text"  name="filter4"/></td>
+    <tr>
+     
+         <td>Sample Interval</td>
+      <td><input type="text"  name="dsamp" /></td>
+     <tr>
+    
+         <td>Top of Analysis Window (ms)</td>
+      <td><input type="text"  name="dft_window_top" /></td>
+     <tr>
+          <td>Bottom of Analysis Window (ms)</td>
+      <td><input type="text"  name="dft_window_bot" /></td>
+     <tr>
+       
+             <td>Analysis Window Cosine Taper (%)</td>
+      <td><input type="text"  name="taper_percent" /></td>
+     <tr>
+    <td>Model</td> 
+  
+<td><textarea name="model"></textarea></td></tr>
+
+
+      <td><input type="submit" value="SEND" id="submit"/>&nbsp;
+          <input type="reset" value="CLEAR" id="reset"/></td>
+      <td>&nbsp;</td></tr>
+    </table>
+  </form>
+</body>
+</html>
+
+
+ <script language="javascript">
+var filter, message;
+message = "x is equal to ";
+document.write (message); // prints the value of the message variable
+document.write filter(0); //prints the value of x
+</script> 
